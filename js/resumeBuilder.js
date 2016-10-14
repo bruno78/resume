@@ -159,6 +159,42 @@ var education = {
    ],
 }
 
+var projects = {
+  "projects": [
+    {
+      "title": "American's Views on Gun Control",
+      "dates": "2016",
+      "description": "-Created a program in Python 2 that would read SPSS file, let the user select the variables for study as well as if want to include empty values ('NA') and return a smaller file in CSV format for analysis.",
+      "images": ["images/197x148.gif"]
+    },
+    {
+      "title": "Portfolio",
+      "dates": "2016",
+      "description": "-Created a responsive portofolio that features projects built with Jekyll, HTML5, CSS3, Bootstrap and Ruby.<br />-Optimized portfolio for all browsers and mobile devices using Bootstrap, media queries and vendor prefixes when necessary.",
+      "images": ["images/197x148.gif"]
+    },
+    {
+      "title": "Blog",
+      "dates": "2016",
+      "description": "-Created a responsive single user blog that displays posts in Markdown format, responsive videos and images built in Ruby on Rails 4.2.5.<br />-Used gems like Devise for users sessions, RedCarpet, Pygments for code colors.",
+      "images": ["images/197x148.gif"]
+    },
+    {
+      "title": "Jobs Board",
+      "dates": "2016",
+      "description": "-Created a responsive jobs board using Ruby on Rails where it accepts two types of users: Company that can posts jobs and place ads and Users that can apply for jobs and have a profile on the page with their resume.",
+      "images": ["images/197x148.gif"]
+    },
+    {
+      "title": "Pong",
+      "dates": "2016",
+      "description": "-Created a classic Pong game for Python 2 where two players can play the game using the web browser.",
+      "images": ["images/197x148.gif"]
+    }
+  ]
+}
+
+
 bio.display = function() {
   var formattedName = HTMLheaderName.replace("%data%", bio.name);
   var formattedJob = HTMLheaderRole.replace("%data%", bio.role);
@@ -175,9 +211,9 @@ bio.display = function() {
   formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.webpage));
   formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
 
-  $("#header").prepend(formattedNameRole);
-  $("#header").append(formattedPic);
-  $("#header").append(formattedWelcome);
+  $("#header").prepend(formattedNameRole)
+              .append(formattedPic)
+              .append(formattedWelcome);
 
   /* for loop */
 
@@ -194,8 +230,47 @@ bio.display = function() {
   }
 }
 
-bio.display();
 
+work.display = function() {
+  work.jobs.forEach(function(job){
+    $("#workExperience").append(HTMLworkStart);
+
+    var formattedEmployer = HTMLworkEmployer.replace("%data%", job.employer);
+    var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
+    var formattedEmployerTitle = formattedEmployer + formattedTitle;
+    var formattedYears = HTMLworkDates.replace("%data%", job.dates);
+    var formattedCity = HTMLworkLocation.replace("%data%", job.location);
+    var formattedDescription = HTMLworkDescription.replace("%data%", job.description);
+
+    $(".work-entry:last").append(formattedEmployerTitle)
+                         .append(formattedYears)
+                         .append(formattedCity)
+                         .append(formattedDescription);
+  });
+};
+
+projects.display = function() {
+  projects.projects.forEach(function(p) {
+    $("#projects").append(HTMLprojectStart);
+
+    var formattedProjectTitle = HTMLprojectTitle.replace("%data%", p.title);
+    var formattedProjectDate = HTMLprojectDates.replace("%data%", p.dates);
+    var formattedProjectDescription = HTMLprojectDescription.replace("%data%", p.description);
+    var formattedProjectImage = HTMLprojectImage.replace("%data%", p.images);
+
+    $(".project-entry:last").append(formattedProjectTitle)
+                            .append(formattedProjectDate)
+                            .append(formattedProjectDescription)
+                            .append(formattedProjectImage);
+  });
+}
+
+
+bio.display();
+work.display();
+projects.display();
+
+/*
 education.display = function() {
   for (edu in education.schools) {
     $('#education').append(HTMLschoolStart);
@@ -232,3 +307,4 @@ education.display = function() {
 }
 
 education.display();
+*/
