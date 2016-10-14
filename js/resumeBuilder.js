@@ -164,32 +164,27 @@ var projects = {
     {
       "title": "American's Views on Gun Control",
       "dates": "2016",
-      "description": "-Created a program in Python 2 that would read SPSS file, let the user select the variables for study as well as if want to include empty values ('NA') and return a smaller file in CSV format for analysis.",
-      "images": ["images/197x148.gif"]
+      "description": "-Created a program in Python 2 that would read SPSS file, let the user select the variables for study as well as if want to include empty values ('NA') and return a smaller file in CSV format for analysis."
     },
     {
       "title": "Portfolio",
       "dates": "2016",
-      "description": "-Created a responsive portofolio that features projects built with Jekyll, HTML5, CSS3, Bootstrap and Ruby.<br />-Optimized portfolio for all browsers and mobile devices using Bootstrap, media queries and vendor prefixes when necessary.",
-      "images": ["images/197x148.gif"]
+      "description": "-Created a responsive portofolio that features projects built with Jekyll, HTML5, CSS3, Bootstrap and Ruby.<br />-Optimized portfolio for all browsers and mobile devices using Bootstrap, media queries and vendor prefixes when necessary."
     },
     {
       "title": "Blog",
       "dates": "2016",
-      "description": "-Created a responsive single user blog that displays posts in Markdown format, responsive videos and images built in Ruby on Rails 4.2.5.<br />-Used gems like Devise for users sessions, RedCarpet, Pygments for code colors.",
-      "images": ["images/197x148.gif"]
+      "description": "-Created a responsive single user blog that displays posts in Markdown format, responsive videos and images built in Ruby on Rails 4.2.5.<br />-Used gems like Devise for users sessions, RedCarpet, Pygments for code colors."
     },
     {
       "title": "Jobs Board",
       "dates": "2016",
-      "description": "-Created a responsive jobs board using Ruby on Rails where it accepts two types of users: Company that can posts jobs and place ads and Users that can apply for jobs and have a profile on the page with their resume.",
-      "images": ["images/197x148.gif"]
+      "description": "-Created a responsive jobs board using Ruby on Rails where it accepts two types of users: Company that can posts jobs and place ads and Users that can apply for jobs and have a profile on the page with their resume."
     },
     {
       "title": "Pong",
       "dates": "2016",
-      "description": "-Created a classic Pong game for Python 2 where two players can play the game using the web browser.",
-      "images": ["images/197x148.gif"]
+      "description": "-Created a classic Pong game for Python 2 where two players can play the game using the web browser."
     }
   ]
 }
@@ -208,7 +203,7 @@ bio.display = function() {
   formattedContactInfo.push(HTMLmobile.replace("%data%", bio.contacts.mobile));
   formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
   formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
-  formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.webpage));
+  formattedContactInfo.push(HTMLwebpage.replace("%data%", bio.contacts.webpage));
   formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
 
   $("#header").prepend(formattedNameRole)
@@ -227,6 +222,7 @@ bio.display = function() {
 
   for (var info=0; info<formattedContactInfo.length; info++) {
     $("#topContacts").append(formattedContactInfo[info]);
+    $("#footerContacts").append(formattedContactInfo[info]);
   }
 }
 
@@ -256,12 +252,12 @@ projects.display = function() {
     var formattedProjectTitle = HTMLprojectTitle.replace("%data%", p.title);
     var formattedProjectDate = HTMLprojectDates.replace("%data%", p.dates);
     var formattedProjectDescription = HTMLprojectDescription.replace("%data%", p.description);
-    var formattedProjectImage = HTMLprojectImage.replace("%data%", p.images);
+    //var formattedProjectImage = HTMLprojectImage.replace("%data%", p.images);
 
     $(".project-entry:last").append(formattedProjectTitle)
                             .append(formattedProjectDate)
-                            .append(formattedProjectDescription)
-                            .append(formattedProjectImage);
+                            .append(formattedProjectDescription);
+
   });
 }
 
