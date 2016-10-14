@@ -45,17 +45,17 @@ var education = {
       "name": "IEC - Pontificia Universidade Católica - MG",
       "location": "Belo Horizonte, MG - Brazil",
       "degree": "Post-Bachelors",
-      "majors": "Cinema",
-      "date": 2003,
+      "majors": ["Cinema"],
+      "date": "2003",
       "url": "http://www.pucminas.br/iec/destaques.php"
     },
 
     {
       "name": "Pontificia Universidade Católica - MG",
       "location": "Belo Horizonte, MG - Brazil",
-      "degree": "Bachelors",
-      "majors": "Psychology",
-      "date": 2002,
+      "degree": "BA",
+      "majors": ["Psychology"],
+      "date": "2002",
       "url": "http://www.pucminas.br/destaques/destaques.php"
     }
   ],
@@ -265,46 +265,44 @@ projects.display = function() {
   });
 }
 
+education.display = function() {
+  education.schools.forEach(function(school) {
+    $("#education").append(HTMLschoolStart);
+
+    var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
+    var formattedDegree = HTMLschoolDegree.replace("%data%", school.degree);
+    var formattedNameDegree = formattedSchoolName + formattedDegree;
+    var formattedSchoolDate = HTMLschoolDates.replace("%data%", school.date);
+    var formattedMajor = HTMLschoolMajor.replace("%data%", school.majors);
+    var formattedLocation = HTMLschoolLocation.replace("%data%", school.location);
+    var formattedURL = HTMLonlineURL.replace("%data%", school.url);
+
+    $(".education-entry:last").append(formattedNameDegree)
+                             .append(formattedSchoolDate)
+                             .append(formattedMajor)
+                             .append(formattedLocation)
+                             .append(formattedURL);
+  });
+
+  $("#education").append(HTMLonlineClasses);
+
+  education.onlineCourses.forEach(function(internet) {
+    $('#education').append(HTMLschoolStart);
+
+    var formattedTitle = HTMLonlineTitle.replace("%data%", internet.title);
+    var formattedSchool = HTMLonlineSchool.replace("%data%", internet.school);
+    var formattedTitleSchool = formattedTitle + formattedSchool;
+    var formattedDate = HTMLonlineDates.replace("%data%", internet.dates);
+    var formattedURL = HTMLonlineURL.replace("%data%", internet.url);
+
+    $(".education-entry:last").append(formattedTitleSchool)
+                              .append(formattedDate)
+                              .append(formattedURL);
+  });
+}
+
 
 bio.display();
 work.display();
 projects.display();
-
-/*
-education.display = function() {
-  for (edu in education.schools) {
-    $('#education').append(HTMLschoolStart);
-
-    var formattedName = HTMLschoolName.replace("%data%", education.schools[edu].name);
-    var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[edu].degree);
-    var formattedNameAndDegree = formattedName + formattedDegree;
-    var formattedDate = HTMLschoolDates.replace("%data%", education.schools[edu].dates);
-    var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[edu].location);
-
-    $(".education-entry:last").append(formattedNameAndDegree);
-    $(".education-entry:last").append(formattedDate);
-    $(".education-entry:last").append(formattedLocation);
-
-    if (education.schools[edu].majors.length > 0) {
-      for (major in education.school[edu].majors) {
-        var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[edu].majors[major]);
-        $(".education-entry:last").append(formattedMajor);
-      }
-    }
-  }
-
-  //online classes
-  $('#education').append(HTMLonlineClasses)
-  for (online in education.onlineCourses) {
-    $('#education').append(HTMLschoolStart);
-    var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[online].title);
-    var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[online].school);
-    var formattedTitleAndSchool = formattedTitle + formattedSchool;
-    $(".education-entry:last").append(formattedDate);
-    var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[online].url);
-    $(".education-entry:last").append(formattedURL);
-  }
-}
-
 education.display();
-*/
